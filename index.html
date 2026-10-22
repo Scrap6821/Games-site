@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pixel Keep — Free Browser Arcade</title>
+<style>
+:root{--bg:#101714;--panel:#1b2621;--line:#425546;--gold:#e9c778;--muted:#a8b7aa}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#24372b,#101714 65%);color:#f2f0df;font:15px system-ui,Arial,sans-serif}
+header{padding:24px max(20px,calc((100vw - 1200px)/2));border-bottom:1px solid var(--line);background:#101914dd;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{font:800 26px Georgia,serif;letter-spacing:2px;color:var(--gold)}.brand small{display:block;font:10px system-ui;letter-spacing:4px;color:var(--muted);margin-top:4px}
+nav{display:flex;gap:8px}button,.btn{border:1px solid #5d725d;background:#2b3c30;color:#f2f0df;border-radius:8px;padding:10px 14px;cursor:pointer;text-decoration:none;font-weight:650}button:hover,.btn:hover{background:#40563f}
+main{max-width:1200px;margin:auto;padding:28px 20px 60px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:center;margin-bottom:28px}
+.hero-copy,.hero-art{border:1px solid var(--line);border-radius:16px;background:#18241edb;padding:28px;min-height:210px}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:3px;font-weight:800}h1{font:800 clamp(30px,5vw,52px) Georgia,serif;line-height:1.04;margin:12px 0}p{color:var(--muted);line-height:1.6}.hero-art{display:flex;align-items:center;justify-content:center;gap:16px;background:linear-gradient(135deg,#263d2a,#19251f)}
+.big-icon{font-size:clamp(42px,7vw,78px);filter:drop-shadow(0 10px 8px #0007)}.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:28px 0 14px}.sectionhead h2{font:700 25px Georgia,serif;margin:0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden;display:flex;flex-direction:column;min-width:0}.cover{height:150px;display:flex;align-items:center;justify-content:center;font-size:65px;background:radial-gradient(circle at 50% 35%,#526c45,#24382b 70%);border-bottom:1px solid var(--line)}.cover.blue{background:radial-gradient(circle at 50% 35%,#426e78,#1b3037 70%)}.cover.purple{background:radial-gradient(circle at 50% 35%,#64537c,#292438 70%)}
+.cardbody{padding:16px;display:flex;flex-direction:column;flex:1}.card h3{margin:0 0 7px;font-size:18px}.card p{font-size:13px;margin:0 0 15px;flex:1}.meta{font-size:11px;color:#d6bd7d;margin-bottom:12px}.play{width:100%;background:#6e5930;border-color:#c9a95f}.notice{margin-top:26px;padding:16px;border:1px dashed #52654e;border-radius:10px;font-size:13px;color:var(--muted)}
+#player{display:none;margin-top:20px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0d1310}#player.active{display:block}.playerbar{padding:12px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:#1b2820}.playerbar strong{color:var(--gold)}iframe{display:block;width:100%;height:min(78vh,850px);min-height:550px;border:0;background:#18231c}
+footer{text-align:center;padding:25px;border-top:1px solid var(--line);color:#829184;font-size:12px}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.grid{grid-template-columns:1fr}.hero-copy,.hero-art{padding:20px}header{padding:18px}.cover{height:120px}iframe{min-height:500px}}
+</style></head>
+<body>
+<header><div class="brand">PIXEL KEEP<small>THE FREE BROWSER ARCADE</small></div><nav><button onclick="showLibrary()">Game Library</button><a class="btn" href="#how">Add Your Games</a></nav></header>
+<main>
+<section class="hero">
+ <div class="hero-copy"><div class="eyebrow">NO DOWNLOADS • NO PAID SERVER</div><h1>Your next game<br>is one click away.</h1><p>A little home for browser games. Play fantasy battles, survive space, and grow your own collection. Add new HTML games whenever you want.</p><button class="play" onclick="playGame('realmguard')">⚔ Play Realmguard</button></div>
+ <div class="hero-art"><span class="big-icon">🏰</span><span class="big-icon">🐉</span><span class="big-icon">🛡️</span></div>
+</section>
+<div id="library">
+ <div class="sectionhead"><h2>Game Library</h2><span class="meta">YOUR ARCADE · 3 GAMES</span></div>
+ <div class="grid">
+  <article class="card"><div class="cover">🏰</div><div class="cardbody"><h3>Realmguard</h3><div class="meta">STRATEGY · TOWER DEFENSE</div><p>Build defenses, upgrade your towers, and hold the road against endless waves of fantasy monsters.</p><button class="play" onclick="playGame('realmguard')">Play now →</button></div></article>
+  <article class="card"><div class="cover blue">🚀</div><div class="cardbody"><h3>Star Drifter</h3><div class="meta">ARCADE · SURVIVAL</div><p>Dodge asteroids, collect stardust, and see how long your little ship can survive.</p><button class="play" onclick="playGame('stardrifter')">Play now →</button></div></article>
+  <article class="card"><div class="cover purple">🧙</div><div class="cardbody"><h3>Rune Clicker</h3><div class="meta">IDLE · UPGRADES</div><p>Gather mana, unlock magical upgrades, and build a spell-powered empire.</p><button class="play" onclick="playGame('runeclicker')">Play now →</button></div></article>
+ </div>
+</div>
+<section id="player"><div class="playerbar"><strong id="playingTitle">Now playing</strong><button onclick="closeGame()">✕ Back to library</button></div><iframe id="gameframe" title="Browser game" allow="fullscreen"></iframe></section>
+<div class="notice" id="how"><strong style="color:#e9c778">How to add more games:</strong><br>
+1. Put each game’s HTML file inside the <code>games</code> folder.<br>
+2. In <code>index.html</code>, copy a game card and change its title, description, and button’s game ID.<br>
+3. Add that ID and filename to the <code>gameFiles</code> list in the script below.<br>
+4. Publish the folder on GitHub Pages for free. All games must be HTML/JavaScript or other browser-compatible files.
+</div>
+</main><footer>PIXEL KEEP · Made for games that fit in a browser tab.</footer>
+<script>
+const gameFiles={realmguard:'games/realmguard.html',stardrifter:'games/stardrifter.html',runeclicker:'games/runeclicker.html'};
+const gameTitles={realmguard:'Realmguard — Endless Siege',stardrifter:'Star Drifter',runeclicker:'Rune Clicker'};
+function playGame(id){const f=document.getElementById('gameframe');f.src=gameFiles[id];document.getElementById('playingTitle').textContent=gameTitles[id]||id;document.getElementById('player').classList.add('active');document.getElementById('player').scrollIntoView({behavior:'smooth',block:'start'});}
+function closeGame(){const f=document.getElementById('gameframe');f.src='about:blank';document.getElementById('player').classList.remove('active');document.getElementById('library').scrollIntoView({behavior:'smooth'});}
+function showLibrary(){document.getElementById('library').scrollIntoView({behavior:'smooth'});}
+</script></body></html>
